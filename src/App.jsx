@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import PokemonCard from "./components/PokemonCard";
 
 function App() {
@@ -8,13 +9,35 @@ function App() {
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
     },
     {
+      name: "charmander",
+      imgSrc:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+    },
+    {
+      name: "squirtle",
+      imgSrc:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+    },
+    {
+      name: "pikachu",
+      imgSrc:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+    },
+    {
       name: "mew",
     },
   ];
 
+  const [pokemonIndex, setpokemonIndex] = useState(0);
+  const handleClick = (e) => setpokemonIndex(pokemonIndex + 1);
+  const handleClick1 = (e) => setpokemonIndex(pokemonIndex - 1);
   return (
     <div>
-      <PokemonCard pokemon={pokemonList[0]} />
+      <PokemonCard pokemon={pokemonList[pokemonIndex]} />
+      {pokemonIndex > 0 && <button onClick={handleClick1}>Précédent</button>}
+      {pokemonIndex < pokemonList.length - 1 && (
+        <button onClick={handleClick}>Suivant</button>
+      )}
     </div>
   );
 }
